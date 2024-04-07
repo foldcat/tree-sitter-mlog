@@ -1,0 +1,88 @@
+snake game
+set length 3
+set snake 1
+op add snake snake 1
+write 0 cell2 snake
+jump 2 lessThanEq snake 63
+op add time time 1
+set x 0
+jump 6 greaterThanEq x 4
+read result cell1 x
+jump 12 equal result 1
+op add x x 1
+jump 7 always x false
+jump 16 equal x 0
+jump 18 equal x 1
+jump 20 equal x 2
+jump 22 equal x 3
+op add head head 8
+jump 23 always x 4
+op sub head head 1
+jump 23 always x 4
+op sub head head 8
+jump 23 always x 4
+op add head head 1
+set tlength length
+jump 30 lessThan tlength 0
+read result cell2 tlength
+op add aa tlength 1
+write result cell2 aa
+op sub tlength tlength 1
+jump 24 always x false
+jump 32 lessThan head 63
+op sub head head 64
+jump 34 greaterThan head -1
+op add head head 64
+write head cell2 0
+set judge 0
+jump 42 greaterThanEq judge 8
+read result cell3 judge
+op add judge judge 1
+jump 36 notEqual head result
+op add length length 1
+jump 75 equal length 63
+set tlength 1
+jump 48 greaterThanEq tlength length
+read return cell2 tlength
+op add tlength tlength 1
+jump 43 notEqual head return
+set length 3
+draw clear 128 128 128 255 0 0
+draw color 152 251 152 255 0 0
+set food 0
+jump 61 greaterThanEq food 8
+read result cell3 food
+op mod x result 8
+op mul x x 22
+op div result result 8
+op floor result result 8
+op mul y result 22
+draw rect x y 20 20 0 0
+op add food food 1
+jump 51 always x false
+draw color 255 105 180 255 0 0
+set tlength 0
+jump 73 greaterThanEq tlength length
+read result cell2 tlength
+op mod x result 8
+op mul x x 22
+op div result result 8
+op floor result result 8
+op mul y result 22
+draw rect x y 20 20 0 0
+op add tlength tlength 1
+jump 63 always x false
+drawflush display1
+jump 5 always x false
+draw clear 128 128 128 255 0 0
+set over 0
+draw color 221 160 221 255 0 0
+draw stroke 12 128 128 255 0 0
+draw line 11 100 59 125 0 0
+draw line 11 140 59 130 0 0
+draw line 180 100 133 125 0 0
+draw line 180 140 133 130 0 0
+draw triangle 73 120 115 120 94 70
+drawflush display1
+op add over over 1
+jump 85 greaterThanEq over 3000
